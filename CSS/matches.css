@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Manrope:wght@400;500;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&family=Red+Hat+Display:wght@500;700;900&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    font-size: 14px;
+}
+
+.container{
+    position: relative;
+    /* direction: rtl; */
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    /* background-color: #F0ECFF; */
+    padding: 10px;
+    overflow: hidden;
+    background-image: url(../images/45200.png);
+    color: white;
+}
+
+.container h2{
+    direction: rtl;
+    margin-block-end: 15px;
+    color: white;
+}
+
+.container>img{
+    position: absolute;
+    width: 100%;
+    left: -30%;
+    bottom: -20%;
+    opacity: 0.5;
+}
+
+#matches{
+    /* background-color: gray; */
+    /* margin: 10px; */
+    position: relative;
+}
+.matches{
+}
+
+.match{
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    text-align: center;
+    background-color: #ffffff4d;
+    border-radius: 5px;
+    padding-inline: 10px;
+    width: 100%;
+    color: white;
+}
+
+.match-container{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.team{
+    min-width: 100px;
+    /* color: #0A0935; */
+}
+
+.home{
+    /* padding-right: 15px; */
+    flex: 1;
+    
+}
+
+.time{
+    /* padding-inline: 15px; */
+    padding: 2px 8px;
+    background-color: #0A0935;
+    color: white;
+    /* border-radius: 20px; */
+    min-width: 65px;
+}
+
+.away{
+    /* padding-left: 15px; */
+    flex: 1;
+}
+
+.match img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* background-color: #8f3a3a; */
+}
+
+.away,
+.home{
+    /* background-color: #eee; */
+}
+
+.venue{
+    
+    font-size: 10px;
+}
+
+.date{
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+    background-color: #ffffff4d;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 0 16px;   
+}

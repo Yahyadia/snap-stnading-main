@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">الجولة</label>
+    <input id="round-input" type="text">
+    <label for="">ID</label>
+    <input id="id-input" type="text">
+    <button onclick="send('standing')">standing</button>
+    <button onclick="send('matches2')">matches</button>
+    <button onclick="send('resultsOfMatches')">نتائج الجولة</button>
+    <button onclick="send('HtoH')">H to H</button>
+    <button onclick="send('scorer')">scorers</button>
+    <button onclick="todaysMatchs()">مباريات اليوم</button>
+    <select name="" id="team">
+        <option value="">العين</option>
+        <option value="">العين</option>
+        <option value="">10155dd</option>
+        <option value="">101dd55</option>
+    </select>
+    <input type="file" id="fileInput" accept="image/*">
+</body>
+<script>
+
+    function dateOfMatch()
+    {
+        const date = new Date()
+        console.log(date)
+        const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+        console.log(newDate)   
+
+        let day = date.getDate()
+        day = day < 10 ? "0" + day : day
+        console.log(day)
+        let month = date.getMonth()+1
+        month = month < 10 ? "0" + month : month
+        console.log(month)
+        const year = date.getFullYear()            
+        console.log(year)
+
+        return `${year}-${month}-${day}`
+    }
+
+    function todaysMatchs(){
+        window.location = `todaysMatches.html?Date=${dateOfMatch()}`
+    }
+    
+    function send(url, today = "no"){
+        const roundInput = document.getElementById("round-input").value
+        const idInput = document.getElementById("id-input").value
+
+        window.location = `${url}.html?Num=${roundInput}&Id=${idInput}&Today=${today}`
+        var input = document.getElementById('fileInput');
+            var file = input.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imageUrl = e.target.result;
+
+                    // Store the image data in sessionStorage
+                    sessionStorage.setItem('imageData', imageUrl);
+                    
+                    // Redirect to the other page
+                    window.location.href = 'HtoH.html';
+                };
+                reader.readAsDataURL(file);
+            }
+    }
+// console.log(document.getElementById("team").value)
+// // var strUser = e.options[e.selectedIndex].value;
+// console.log(strUser)
+
+
+</script>
+</html>

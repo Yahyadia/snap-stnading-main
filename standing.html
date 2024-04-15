@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="CSS/standing.css">
+</head>
+<body>
+    <div class="container">
+        <h2>ترتيب الجولة <b id="round">14</b></h2>
+        <img src="images/uaelogo2.png" alt="">
+        <div class="standing_table">
+            <table >
+                <thead>
+                    <tr>
+                        <th colspan="3">فريق</th>
+                        <th>لعب</th>
+                        <th>فاز</th>
+                        <th>تعادل</th>
+                        <th>خسر</th>
+                        <!-- <th>متبقية</th> -->
+                        <!-- <th>-/+</th>
+                        <th>فرق</th> -->
+                        <th>نقاط</th>
+                    </tr>
+                </thead>
+                <tbody id="standing">
+                    <!-- <tr>
+                        <td id="rank">1</td>
+                        <td id="team-logo">logo</td>
+                        <td id="team-name">برشلونة</td>
+                        <td id="played">17</td>
+                        <td id="won">13</td>
+                        <td id="draw">3</td>
+                        <td id="lose">1</td>
+                        <td id="">21</td>
+                        <td>11:38</td>
+                        <td>27</td>
+                        <td>42</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="main2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+function standingRound(){
+    const urlParams = new URLSearchParams(window.location.search)
+    let round = urlParams.get("Num")
+    document.getElementById("round").innerHTML = round
+    console.log(round)
+}
+standingRound()
+
+function standing(){
+    return new Promise((resolve, reject)=>{        
+        axios.get("https://v3.football.api-sports.io/standings?league=301&season=2023",{
+            headers:{
+                "x-rapidapi-host" : "v3.football.api-sports.io",
+                "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+            }
+        })
+        .then((response) => {
+            // console.log(response.data.response[0].league.standings[0])
+            let standing = response.data.response[0].league.standings[0]
+            let content = ''
+            for(team of standing){
+                content = 
+                    `<tr>
+                    <td>${team.rank}</td>
+                    <td><img src="${team.team.logo}" alt="" width="30px"></td>
+                    <td class="team">${team.team.name}</td>
+                    <td>${team.all.played}</td>
+                    <td>${team.all.win}</td>
+                    <td>${team.all.draw}</td>
+                    <td>${team.all.lose}</td>
+                    <td>${team.points}</td>
+                    </tr>    
+                    `    
+                    document.getElementById("standing").innerHTML += content
+            }    
+            resolve()                           
+        })
+    })
+}
+
+standing()
+.then(()=>{
+    btayehLogo()
+    changeTeamsNamesToArabic()
+})
+
+</script>
+</html>

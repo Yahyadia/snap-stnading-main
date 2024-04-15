@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Manrope:wght@400;500;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&family=Red+Hat+Display:wght@500;700;900&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    /* font-size: 12px; */
+}
+
+.container{
+    position: relative;
+    direction: rtl;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    background-color: #F0ECFF;
+    padding-inline: 5px;
+    overflow: hidden;
+    background-image: url(../images/45200.png);
+    color: white;
+}
+
+
+.container>img{
+    position: absolute;
+    width: 100%;
+    left: -30%;
+    bottom: -20%;
+    opacity: 0.8;
+}
+
+h2{
+    margin-bottom: 15px;
+}
+
+.standing_table{
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: -60px;
+    font-size: 12px;
+}
+table{
+    border-collapse: collapse;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 2px 8px hsl(0deg 0% 0% / 20%);
+    background-color: #ffffff4d;
+    color: #0a0935;
+    color: white;
+}
+
+thead{
+    /* background-color: rgba(0, 0, 0, 0.562); */
+    background-color: #0a0935;
+    color: white;
+}
+thead th{
+    padding: 4px 5px;
+}
+td{
+    padding: 1px 2px;
+}
+
+.team{
+    padding-inline: 15px;
+}
+
+table img{
+    display: block;
+    width: 25px;
+}
+
+tr:nth-child(odd){
+    background-color: rgba(0, 0, 0, 0.0250);
+}
