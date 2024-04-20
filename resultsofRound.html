@@ -35,9 +35,9 @@
         let round = urlParams.get("Num")
         return round
     }    
-        const urlParams = new URLSearchParams(window.location.search)
-        let date = urlParams.get("Date")
-        console.log(date)    
+        // const urlParams = new URLSearchParams(window.location.search)
+        // let date = urlParams.get("Date")
+        // console.log(date)    
 
     document.getElementById("round").innerHTML = standingRound()
     let round = standingRound()
@@ -66,6 +66,7 @@
             {
                 console.log(response)
                 const matches = response.data.response
+                console.log(matches)
                 // ============================================ DATES ARRAY
                 let days = []
                 

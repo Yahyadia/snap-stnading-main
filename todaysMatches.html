@@ -30,24 +30,27 @@
 <script src="main2.js"></script>
 <script>
 
-    function standingRound(){
-        const urlParams = new URLSearchParams(window.location.search)
-        let round = urlParams.get("Num")
-        return round
-    }
-    // function todaysdate(){
-        const urlParams = new URLSearchParams(window.location.search)
-        let date = urlParams.get("Date")
+
+    function dateOfMatch()
+    {
+        const date = new Date()
         console.log(date)
-    //     return date
-    // }
+        const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+        console.log(newDate)   
 
-    // let todayDate = todaysdate()
-    // console.log(todayDate)
-    
+        let day = date.getDate()
+        day = day < 10 ? "0" + day : day
+        // console.log(day)
+        let month = date.getMonth()+1
+        month = month < 10 ? "0" + month : month
+        // console.log(month)
+        const year = date.getFullYear()            
+        // console.log(year)
 
-    // document.getElementById("round").innerHTML = standingRound()
-    // let round = standingRound()
+        return `${year}-${month}-${day}`
+    }
+
+    console.log(dateOfMatch())
 
     function matches()
     {
@@ -60,7 +63,7 @@
                     season: '2023',
                     // round: `Regular Season - ${round}`,
                     timezone: 'Asia/Dubai',
-                    date: date
+                    date: dateOfMatch()
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
@@ -94,29 +97,32 @@
                     }
                     resolve("finish")
                 })
-            })
+        })
             
-            function venue()
-            {
-                if(match.fixture.status.long == "Not Started"){
-                    return `${match.fixture.venue.name}`
-                }else{
-                    return ""
-                }
+        function venue()
+        {
+            if(match.fixture.status.long == "Not Started"){
+                return `${match.fixture.venue.name}`
+            }else{
+                return ""
             }
+        }
 
-            
-            function dataResult()
-            {
-                const date = new Date(match.fixture.date)
-                // console.log(date)
-                const newDate = date.getHours() + ' : ' + date.getMinutes()
-                if(match.fixture.status.long == "Not Started"){
-                    return `${newDate}`
-                }else if(match.fixture.status.long == "Match Postponed"){
-                    return "مؤجلة"
-                }else{
-                    return `${match.score.fulltime.home} - ${match.score.fulltime.away}`
+        
+        function dataResult()
+        {
+            const date = new Date(match.fixture.date)
+            // console.log(date)
+            let hour = date.getHours()
+            let minute = date.getMinutes()
+            minute = minute = "0" ? "00" : minute
+            const newDate = date.getHours() + ' : ' + minute
+            if(match.fixture.status.long == "Not Started"){
+                return `${newDate}`
+            }else if(match.fixture.status.long == "Match Postponed"){
+                return "مؤجلة"
+            }else{
+                return `${match.score.fulltime.home} - ${match.score.fulltime.away}`
             }
         }
         

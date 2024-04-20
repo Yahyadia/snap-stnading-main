@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            height: 100vh;
+            overflow: hidden;
+            display: grid;
+            place-content: center;
+            height: fit-content;
+        }
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+            position: absolute;
+            z-index: 1;
+        }
+        .news{
+            background-color: white;
+            width: 380px;
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            margin-top: 550px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="receivedImage" src="images\تنزيل.jpg" alt="">
+        <div class="news">
+            <h3>NEWS</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus nemo, repudiandae officia nostrum nobis doloremque voluptatib</p>
+        </div>
+    </div>
+</body>
+<script>
+    // Retrieve the image data from sessionStorage
+    var imageData = sessionStorage.getItem('imageData');
+
+// Set the source of the image element to the received image data
+document.getElementById('receivedImage').src = imageData;
+</script>
+</html>

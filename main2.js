@@ -45,7 +45,7 @@ function changeTeamsNamesToArabic(){
                 else if(team.innerHTML == "Al-Ittihad Kalba"){
                     team.innerHTML = "اتحاد كلباء"
                 }
-                else if(team.innerHTML == "Al Khaleej"){
+                else if(team.innerHTML == "Khorfakkan"){
                     team.innerHTML = "خورفكان"
                 }
                 else if(team.innerHTML == "Al-Wasl FC"){
@@ -85,7 +85,9 @@ function changeVenuesNamesToArabic(){
                 venue.innerHTML = "استاد خالد بن محمد"
             }else if(venue.innerHTML == "Ittihad Kalba Club Stadium"){
                 venue.innerHTML = "استاد إتحاد كلباء"
+            }else if(venue.innerHTML == "Al Maktoum Stadium"){
+                venue.innerHTML = "استاد  ال مكتوم"
             }                                
-            }
+        }
 }
 
