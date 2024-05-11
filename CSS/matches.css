@@ -12,6 +12,8 @@ body{
 }
 
 .container{
+    background-color: #001b2b;
+    background-image: linear-gradient(0deg, #06141b, #11212d, #253745);
     position: relative;
     /* direction: rtl; */
     min-height: 100vh;
@@ -21,7 +23,7 @@ body{
     /* background-color: #F0ECFF; */
     padding: 10px;
     overflow: hidden;
-    background-image: url(../images/45200.png);
+    /* background-image: url(../images/45200.png); */
     color: white;
 }
 
@@ -46,9 +48,13 @@ body{
 }
 .matches{
 }
+.match-container{
+    text-align: center;
+    margin-bottom: 5px;
+}
 
 .match{
-    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,10 +67,11 @@ body{
     color: white;
 }
 
-.match-container{
-    text-align: center;
-    margin-bottom: 5px;
+.match>img{
+    width: "25px";
+    height: "25px";
 }
+
 
 .team{
     min-width: 100px;
@@ -80,7 +87,7 @@ body{
 .time{
     /* padding-inline: 15px; */
     padding: 2px 8px;
-    background-color: #0A0935;
+    background-color: rgb(179 159 50);
     color: white;
     /* border-radius: 20px; */
     min-width: 65px;

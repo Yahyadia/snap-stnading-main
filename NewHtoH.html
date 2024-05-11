@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Manrope:wght@400;500;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&family=Red+Hat+Display:wght@500;700;900&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        .container{
+            position: relative;
+            height: 100vh;
+            /* background-color: blanchedalmond; */
+            color: white;
+            font-family: 'Poppins';
+        }
+        .overlay{
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            /* z-index: 3; */
+            width: 100%;
+            height: 100%;
+            background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.8) 20%, transparent 50%);
+        }
+        #receivedImage{
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .second-container{
+            position: absolute;
+            /* background-color: bisque; */
+            text-align: center;
+            left: 50%;
+            bottom: 0;
+            transform: translate(-50%, -40%);
+        }
+        .logo-name-result{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            /* align-items: center;  */
+            /* gap: 10px;            */
+            width: 30px;
+        }
+        .logo-image > img{
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            filter: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(1000%) contrast(80%);
+        }
+        .team-logo img{
+            padding: 5px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.200);
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+        .scorers{
+            margin-top: 5px;
+            line-height: 1.2;
+        }
+        ul li{
+            min-width: 130px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .result{
+            top: 20px;
+            position: relative;
+            min-width: max-content;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .name{
+            font-family: "Noto Kufi Arabic";
+            font-weight: 600;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="receivedImage" src="images/am_1AM05166.jpg" alt="">
+        <div class="overlay"></div>
+        <div class="second-container">
+            <!--  -->
+            <div class="logo-image">
+                <img id="league_logo" src="images/uaelogo2.png" alt="">
+            </div>
+            <div class="logo-name-result">
+                <div class="home-box">
+                    <div class="home">
+                        <div class="team-logo">
+                            <img id="home_logo" src="images/2868.png" alt="">
+                        </div>
+                    </div>
+                    <div class="name team" id="home_team_name">
+                        al ain
+                    </div>
+                    <ul class="scorers" id="home_scorers">                                                                           
+                    </ul>
+                </div>
+                <!--  -->
+                <div class="result">
+                    <span id="home_result">5</span>
+                    -
+                    <span id="away_result">2</span>                    
+                </div>
+                <!--  -->
+                <div class="away-box">
+                    <div class="away">
+                        <div class="team-logo">
+                            <img id="away_logo" src="images/2868.png" alt="">
+                        </div>
+                    </div>
+                    <div class="name team" id="away_team_name">
+                        al ain
+                    </div>
+                    <ul class="scorers" id="away_scorers">                                                                                                                              
+                    </ul>
+                </div>
+                <!--  -->
+            </div>
+            <div class="scorers-list">
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="main2.js"></script>
+<script>
+    
+    let urlParams = new URLSearchParams(window.location.search)
+    console.log(urlParams)
+    let teamId = urlParams.get("Id")
+    let leagueId = urlParams.get("League")
+    // console.log(teamId)
+    console.log(teamId)
+    console.log(leagueId)
+
+    // let fixtureId = "22"
+
+    function HtoH(){
+        return new Promise ((resolve, reject) =>{
+            axios.get("https://v3.football.api-sports.io/fixtures/", 
+                {
+                    params: {
+                    league: leagueId,
+                    season: '2023',
+                    team: teamId,
+                    last: '1'
+                },
+                    headers: {
+                        "x-rapidapi-host" : "v3.football.api-sports.io",
+                        "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                    }
+                })
+                .then(response => {
+                    console.log(response.data.response)
+                    const data = response.data.response[0]
+                    document.getElementById("home_team_name").innerHTML = data.teams.home.name
+                    document.getElementById("away_team_name").innerHTML = data.teams.away.name
+    
+                    document.getElementById("home_result").innerHTML = data.score.fulltime.home
+                    document.getElementById("away_result").innerHTML = data.score.fulltime.away
+                    
+                    document.getElementById("home_logo").src = data.teams.home.logo
+                    document.getElementById("away_logo").src = data.teams.away.logo
+                    
+                    document.getElementById("league_logo").src = data.league.logo
+    
+                    let fixtureId = data.fixture.id
+                    console.log(fixtureId)
+                    resolve(fixtureId)
+                })
+        })
+    }
+
+
+    HtoH()
+    .then((fixtureId)=>{
+        console.log(fixtureId)
+        axios.get("https://v3.football.api-sports.io/fixtures/events", 
+            {
+                params: {
+                    fixture: fixtureId                    
+                },
+                headers: {
+                    "x-rapidapi-host" : "v3.football.api-sports.io",
+                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                }
+            })
+            .then((response)=>{        
+                let home = document.getElementById("home_team_name").innerHTML
+                let away = document.getElementById("away_team_name").innerHTML
+                const data = response.data.response
+                console.log(data)
+                for(one of data){
+                    if(one.team.name == home && one.type == "Goal" &&  one.detail !== "Missed Penalty"){
+                        let li = document.createElement("li")
+                        li.appendChild(document.createTextNode(one.player.name))
+                        let span = document.createElement("span")
+                        span.appendChild(document.createTextNode(one.time.elapsed + "'"))
+                        li.appendChild(span)
+                        console.log(li)
+                        document.getElementById("home_scorers").appendChild(li)
+                    }
+                    else if(one.team.name ==away && one.type == "Goal"  &&  one.detail !== "Missed Penalty"){
+                        let li = document.createElement("li")
+                        li.appendChild(document.createTextNode(one.player.name))
+                        let span = document.createElement("span")
+                        span.appendChild(document.createTextNode(one.time.elapsed + "'"))
+                        li.appendChild(span)
+                        console.log(li)
+                        document.getElementById("away_scorers").appendChild(li)
+                    }
+                }
+                btayehLogo()
+                // console.log(home)
+                // console.log(one.type == "Goal")
+                changeTeamsNamesToArabic()
+            })
+    })
+
+    var imageData = sessionStorage.getItem('imageData');
+    if(imageData){
+        document.getElementById('receivedImage').src = imageData;
+    }
+    // Retrieve the image data from sessionStorage
+
+// Set the source of the image element to the received image data
+</script>
+</html>

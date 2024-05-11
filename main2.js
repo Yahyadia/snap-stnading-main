@@ -1,3 +1,7 @@
+
+
+
+
 function btayehLogo(){
     let images = document.querySelectorAll("img")
     for(team of images){
@@ -5,6 +9,19 @@ function btayehLogo(){
         if(team.src == "https://media.api-sports.io/football/teams/9136.png"){
             team.src = "./images/البطايح.png"  
         }
+        if(team.src == "https://media.api-sports.io/football/teams/2876.png"){
+            team.src = "./images/اتحادكلباء.png"  
+        }
+        if(team.src == "https://media.api-sports.io/football/teams/10155.png"){
+            team.src = "./images/النصر.png"  
+        }
+        if(team.src == "https://media.api-sports.io/football/leagues/560.png"){
+            team.src = "./images/newCup-.png"  
+        }
+        if(team.src == "https://media.api-sports.io/football/leagues/17.png"){
+            team.src = "./images/afc2.png"  
+        }
+
     }
 }
 
@@ -87,7 +104,28 @@ function changeVenuesNamesToArabic(){
                 venue.innerHTML = "استاد إتحاد كلباء"
             }else if(venue.innerHTML == "Al Maktoum Stadium"){
                 venue.innerHTML = "استاد  ال مكتوم"
-            }                                
+            }else if(venue.innerHTML == "Saqr bin Mohammad al Qassimi Stadium"){
+                venue.innerHTML = "استاد صقر بن محمد القاسمي"
+            }                                 
         }
 }
 
+// function dataResult()
+//         {
+//             const date = new Date(data.fixture.date)
+//             // console.log(date)
+//             let hour = date.getHours()
+//             let minute = date.getMinutes()
+//             // check  lenght of minute
+//             console.log(minute.toString().split("").length)
+//             minute = minute.toString().split("").length === 1 ? "0" + minute : minute
+//             const newDate = date.getHours() + ' : ' + minute
+            
+//             if(match.fixture.status.long == "Not Started"){
+//                 return `${newDate}`
+//             }else if(match.fixture.status.long == "Match Postponed"){
+//                 return "مؤجلة"
+//             }else{
+//                 return `${match.score.fulltime.home} - ${match.score.fulltime.away}`
+//             }
+//         }

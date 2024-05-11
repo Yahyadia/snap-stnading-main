@@ -12,37 +12,54 @@
     </style>
 </head>
 <body>
-    <label for="">الجولة</label>
+    <label for="">round</label>
     <input id="round-input" type="text">
-    <label for="">ID</label>
-    <input id="id-input" type="text">
+    <hr>
+    <label for="">Team ID</label>
+    <input id="team_id_input" type="text">
+    <hr>
+    <label for="">league id</label>
+    <input id="league_id_input" type="text">
+    <hr>
     <button onclick="send('standing')">standing</button>
-    <button onclick="send('matches2')">matches</button>
-    <button onclick="send('resultsofRound')">نتائج الجولة</button>
-    <button onclick="send('HtoH')">H to H</button>
-    <button onclick="send('scorer')">scorers</button>
-    <button onclick="send('todaysMatches')">مباريات اليوم</button>
+    <button onclick="send('matchesOfRound')">matches of round</button>
+    <button onclick="send('resultsofRound')">result of round </button>
+    <button onclick="send('todaysMatches')">todays matches </button>
+    <button onclick="send('presidentCup')">كاس رئيس الدولة </button>
+    <button onclick="send('matchCard')">matchCard</button>
+    <button onclick="send('matchCardUAE')">matchCard Uae</button>
+    <hr>
+    <button onclick="send('HtoH')">H to H الدوري</button>
+    <button onclick="send('NewHtoH')">H to H 2</button>
+    <button onclick="send('NewHtoHUAE')">H to H UAE</button>
+    <button onclilck="send('scorer')">scorers</button>
+    <hr>
     <!-- sending phot to another page -->
-    <input type="file" id="fileInput1" accept="image/*" value="background">
-    <input type="file" id="fileInput2" accept="image/*" value="background">
+    <input type="file" id="fileinput" accept="image/*" value="background">
+    <!-- sending phot to another page -->
+    <hr>
     <input type="text" id="title" value="title">
     <textarea placeholder="add news" id="description"></textarea>
     <input onclick="send('news')" id="send-news" type="button" value="send news">
+    <input onclick="send('news2')" id="send-news2" type="button" value="send news2">
+    <input onclick="send('news3')" id="send-news3" type="button" value="send news3">
 
 </body>
 <script>
 
     
     
-    function send(url, today = "no"){
+    function send(url){
         const roundInput = document.getElementById("round-input").value
-        const idInput = document.getElementById("id-input").value
+        const teamIdInput = document.getElementById("team_id_input").value
+        const leagueIdInput = document.getElementById("league_id_input").value
 
-        window.location = `${url}.html?Num=${roundInput}&Id=${idInput}&Today=${today}`
+        // window.location = `${url}.html?Num=${roundInput}&Id=${idInput}&Today=${today}`
+        window.location = `${url}.html?Num=${roundInput}&Id=${teamIdInput}&League=${leagueIdInput}`
             
             // sending photo to athor page
-            var input1 = document.getElementById('fileInput1');
-            var file = input1.files[0];
+            var input = document.getElementById('fileinput');
+            var file = input.files[0];
 
             if (file) {
                 var reader = new FileReader();
@@ -53,64 +70,19 @@
                     sessionStorage.setItem('imageData', imageUrl);
                     
                     // Redirect to the other page
-                    window.location.href = 'HtoH.html';
+                    window.location.href = `${url}.html`;
                 };
                 reader.readAsDataURL(file);
             }
 
-
-            
-            var input2 = document.getElementById('fileInput2');
-            var file = input2.files[0];
-            
+            // Store title and desc in SessionStorage
             let title = document.getElementById("title").value
             let desc = document.getElementById("description").value
 
             sessionStorage.setItem('title', title);
             sessionStorage.setItem('desc', desc);
 
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var imageUrl = e.target.result;
-
-                    // Store the image data in sessionStorage
-                    sessionStorage.setItem('imageData', imageUrl);
-                    
-                    // Redirect to the other page
-                    window.location.href = 'news.html';
-                };
-                reader.readAsDataURL(file);
-            }
     }
-
-    // function todaysMatchs(){
-    //     window.location = `todaysMatches.html?Date=${dateOfMatch()}`
-    // }
-
-    // function dateOfMatch()
-    // {
-    //     const date = new Date()
-    //     console.log(date)
-    //     const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
-    //     console.log(newDate)   
-
-    //     let day = date.getDate()
-    //     day = day < 10 ? "0" + day : day
-    //     console.log(day)
-    //     let month = date.getMonth()+1
-    //     month = month < 10 ? "0" + month : month
-    //     console.log(month)
-    //     const year = date.getFullYear()            
-    //     console.log(year)
-
-    //     return `${year}-${month}-${day}`
-    // }
-
-    
-// console.log(document.getElementById("team").value)
-// // var strUser = e.options[e.selectedIndex].value;
-// console.log(strUser)
 
 
 </script>

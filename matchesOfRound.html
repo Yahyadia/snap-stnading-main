@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matches</title>
+    <link rel="stylesheet" href="CSS/matches.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Manrope:wght@400;500;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&family=Red+Hat+Display:wght@500;700;900&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">مباريات الجولة <b id="round">14</b></h2>
+        <img src="images/uaelogo2.png" alt="">
+        <div id="matches">
+            <div class="match-container">
+                <div class="match">
+                    <img src="images/2868.png" alt="">
+                    <div id="home">al wasel</div>
+                    <div id="time">10:50</div>
+                    <div id="away">al sharjah</div>
+                    <img src="images/2868.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="main2.js"></script>
+<script>
+    
+    function standingRound(){
+        const urlParams = new URLSearchParams(window.location.search)
+        let round = urlParams.get("Num")
+        return round
+    }    
+        const urlParams = new URLSearchParams(window.location.search)
+        let date = urlParams.get("Date")
+        console.log(date)    
+
+    document.getElementById("round").innerHTML = standingRound()
+    let round = standingRound()
+
+
+    // ============================================================== FETCH DATA
+    function matches()
+    {
+        return new Promise((resolve, reject)=>{
+
+            axios.get("https://v3.football.api-sports.io/fixtures/", 
+            {
+                params: {
+                    league: '301',
+                    season: '2023',
+                    round: `Regular Season - ${round}`,
+                    timezone: 'Asia/Dubai',
+                    // date: "2024-02-12"
+                },
+                headers: {
+                    "x-rapidapi-host" : "v3.football.api-sports.io",
+                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                }
+            })
+            .then(response =>
+            {
+                console.log(response)
+                const matches = response.data.response
+                // ============================================ DATES ARRAY
+                let days = []
+                
+                for (dataDay of matches)
+                {
+                    let dateOfMatch = dataDay.fixture.date
+                    const date = new Date(dateOfMatch)
+                    // console.log(date)
+                    const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+                    
+                    if(!days.includes(newDate)){
+                        days.push(newDate)
+                    }
+                }
+                let newDays = days.sort((a, b) =>{
+                    let dataA = new Date(a)
+                    let dataB = new Date(b)
+                    return dataA - dataB
+                });
+                console.log(newDays)
+                // ============================================ SORTED DATA
+                let newData = []
+                for(match of matches){
+                    newData.push(match)
+                }
+                newData.sort((a, b) =>{
+                    let dataA = new Date(a.fixture.date)
+                    let dataB = new Date(b.fixture.date)
+                    return dataA - dataB
+                });
+                console.log(newData)
+                // ============================================ 
+                document.getElementById("matches").innerHTML = ""
+                let content = ""
+                
+                resolve([newDays, newData])
+                
+                        })
+                    })
+                // ============================================     
+                    
+            
+    }
+
+    
+    matches()
+    .then(([newDays, newData])=>
+    {       
+        console.log([newDays, newData])
+        for(day of newDays)
+                {   
+                    console.log(newData[newData.length- 1].fixture)
+                    if(newData[0].fixture.status.long !== "Match Finished"){
+                        document.getElementById("matches").innerHTML += `<div class="date">${day}</div>`
+                    }
+                    console.log(day)
+
+                    for(data of newData)
+                    {
+                        let test = data.fixture.date
+                        const date = new Date(test)
+                        // console.log("hello"  date)
+                        const newTest = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+
+                        if(day == newTest){
+                            // console.log(match.fixture.venue.name)
+                            let teamName = ""
+                            content =
+                            `   <div class="match-container">
+                                    <div class="match">
+                                        <img src="${data.teams.home.logo}" alt="" width="25px" height="25px">
+                                        <span class="home team">${data.teams.home.name}</span>
+                                        <span class="time">${dataResult()}</span>
+                                        <span class="away team">${data.teams.away.name}</span>
+                                        <img src="${data.teams.away.logo}" alt="">
+                                        </div>
+                                        <div class="venue">${venue()}</div>                            
+                                        </div>
+                                        `
+                                        document.getElementById("matches").innerHTML += content
+                                    }
+                                }
+                            }        
+    })
+    .then(()=>
+    {
+            changeTeamsNamesToArabic()
+            changeVenuesNamesToArabic()
+            btayehLogo()
+        })
+        
+        
+        function venue()
+        {
+            if(data.fixture.status.long == "Not Started"){
+                return `${data.fixture.venue.name}`
+            }else{
+                return ""
+            }
+        }
+    
+        
+        function dataResult()
+        {
+            const date = new Date(data.fixture.date)
+            // console.log(date)
+            const newDate = date.getHours() + ' : ' + date.getMinutes()
+    
+            if(data.fixture.status.long == "Not Started"){
+                return `${newDate}`
+            }else if(data.fixture.status.long == "Match Postponed"){
+                return "مؤجلة"
+            }else{
+                return `${data.score.fulltime.home} - ${data.score.fulltime.away}`
+            }
+            
+            if(data.fixture.status.long == "Not Started"){
+                return `${newDate}`
+            }else if(data.fixture.status.long == "Match Postponed"){
+                return "مؤجلة"
+            }else{
+                return `${data.score.fulltime.home} - ${data.score.fulltime.away}`
+            }
+    }
+    </script>
+</html>

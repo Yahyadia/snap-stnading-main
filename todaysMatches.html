@@ -63,7 +63,7 @@
                     season: '2023',
                     // round: `Regular Season - ${round}`,
                     timezone: 'Asia/Dubai',
-                    date: dateOfMatch()
+                    date: dataResult()
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
@@ -77,13 +77,17 @@
                 document.getElementById("matches").innerHTML = ""
                 let content = ""
 
+                if(matches[0].fixture.status.long){
+                    document.querySelector(".title").textContent = "نتايج مباريات اليوم"
+                }
+
                 for(match of matches)
                 {
                     let teamName = ""
                     content =
                     `   <div class="match-container">
                             <div class="match">
-                                <img src="${match.teams.home.logo}" alt="" width="25px" height="25px">
+                                <img src="${match.teams.home.logo}" alt="">
                                 <span class="home team">${match.teams.home.name}</span>
                                 <span class="time">${dataResult()}</span>
                                 <span class="away team">${match.teams.away.name}</span>
@@ -115,8 +119,11 @@
             // console.log(date)
             let hour = date.getHours()
             let minute = date.getMinutes()
-            minute = minute = "0" ? "00" : minute
+            // check  lenght of minute
+            console.log(minute.toString().split("").length)
+            minute = minute.toString().split("").length === 1 ? "0" + minute : minute
             const newDate = date.getHours() + ' : ' + minute
+
             if(match.fixture.status.long == "Not Started"){
                 return `${newDate}`
             }else if(match.fixture.status.long == "Match Postponed"){
