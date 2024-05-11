@@ -25,7 +25,8 @@
     <!-- sending phot to another page -->
     <input type="file" id="fileInput1" accept="image/*" value="background">
     <input type="file" id="fileInput2" accept="image/*" value="background">
-    <textarea placeholder="add news"></textarea>
+    <input type="text" id="title" value="title">
+    <textarea placeholder="add news" id="description"></textarea>
     <input onclick="send('news')" id="send-news" type="button" value="send news">
 
 </body>
@@ -58,8 +59,15 @@
             }
 
 
+            
             var input2 = document.getElementById('fileInput2');
             var file = input2.files[0];
+            
+            let title = document.getElementById("title").value
+            let desc = document.getElementById("description").value
+
+            sessionStorage.setItem('title', title);
+            sessionStorage.setItem('desc', desc);
 
             if (file) {
                 var reader = new FileReader();

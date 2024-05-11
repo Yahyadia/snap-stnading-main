@@ -37,8 +37,8 @@
     <div class="container">
         <img id="receivedImage" src="images\تنزيل.jpg" alt="">
         <div class="news">
-            <h3>NEWS</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus nemo, repudiandae officia nostrum nobis doloremque voluptatib</p>
+            <h3 id="title">NEWS</h3>
+            <p id="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus nemo, repudiandae officia nostrum nobis doloremque voluptatib</p>
         </div>
     </div>
 </body>
@@ -46,7 +46,16 @@
     // Retrieve the image data from sessionStorage
     var imageData = sessionStorage.getItem('imageData');
 
-// Set the source of the image element to the received image data
-document.getElementById('receivedImage').src = imageData;
+    // Set the source of the image element to the received image data
+    document.getElementById('receivedImage').src = imageData;
+
+    const titleStorage = sessionStorage.getItem('title');
+    const descStorage = sessionStorage.getItem('desc');
+
+    document.getElementById("title").innerText = titleStorage
+    document.getElementById("desc").innerText = descStorage
+
+    // Or const text = localStorage.getItem('text'); for persistent storage
+    // console.log(text);
 </script>
 </html>
