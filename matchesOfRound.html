@@ -59,7 +59,7 @@
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
-                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                    "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                 }
             })
             .then(response =>
@@ -67,24 +67,26 @@
                 console.log(response)
                 const matches = response.data.response
                 // ============================================ DATES ARRAY
-                let days = []
+                let daysArray = []
                 
                 for (dataDay of matches)
                 {
                     let dateOfMatch = dataDay.fixture.date
                     const date = new Date(dateOfMatch)
                     // console.log(date)
-                    const newDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
+                    const getDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
                     
-                    if(!days.includes(newDate)){
-                        days.push(newDate)
+                    if(!daysArray.includes(getDate)){
+                        daysArray.push(getDate)
                     }
                 }
-                let newDays = days.sort((a, b) =>{
-                    let dataA = new Date(a)
-                    let dataB = new Date(b)
-                    return dataA - dataB
-                });
+                // let newDays = daysArray.sort((a, b) =>{
+                //     let dataA = new Date(a)
+                //     let dataB = new Date(b)
+                //     return dataA - dataB
+                // });
+
+                let newDays = daysArray.sort()
                 console.log(newDays)
                 // ============================================ SORTED DATA
                 let newData = []
@@ -114,13 +116,14 @@
     matches()
     .then(([newDays, newData])=>
     {       
-        console.log([newDays, newData])
+        console.log(newDays ,newData)
         for(day of newDays)
-                {   
+        {   
+                    // document.getElementById("matches").textContent += day+"|||"
                     console.log(newData[newData.length- 1].fixture)
                     if(newData[0].fixture.status.long !== "Match Finished"){
-                        document.getElementById("matches").innerHTML += `<div class="date">${day}</div>`
                     }
+                    document.getElementById("matches").innerHTML += `<div class="date">${day}</div>`
                     console.log(day)
 
                     for(data of newData)
@@ -148,7 +151,7 @@
                                         document.getElementById("matches").innerHTML += content
                                     }
                                 }
-                            }        
+                    }        
     })
     .then(()=>
     {
@@ -160,11 +163,11 @@
         
         function venue()
         {
-            if(data.fixture.status.long == "Not Started"){
-                return `${data.fixture.venue.name}`
-            }else{
-                return ""
-            }
+            // if(data.fixture.status.long == "Not Started"){
+            // }else{
+            //     return ""
+            // }
+            return `${data.fixture.venue.name}`
         }
     
         
@@ -173,22 +176,15 @@
             const date = new Date(data.fixture.date)
             // console.log(date)
             const newDate = date.getHours() + ' : ' + date.getMinutes()
-    
-            if(data.fixture.status.long == "Not Started"){
-                return `${newDate}`
-            }else if(data.fixture.status.long == "Match Postponed"){
-                return "مؤجلة"
-            }else{
-                return `${data.score.fulltime.home} - ${data.score.fulltime.away}`
-            }
             
-            if(data.fixture.status.long == "Not Started"){
-                return `${newDate}`
-            }else if(data.fixture.status.long == "Match Postponed"){
-                return "مؤجلة"
-            }else{
-                return `${data.score.fulltime.home} - ${data.score.fulltime.away}`
-            }
+            // if(data.fixture.status.long == "Not Started"){
+            //     return `${newDate}`
+            // }else if(data.fixture.status.long == "Match Postponed"){
+            //     return "مؤجلة"
+            // }else{
+            //     return `${data.score.fulltime.home} - ${data.score.fulltime.away}`
+            // }
+            return newDate
     }
     </script>
 </html>

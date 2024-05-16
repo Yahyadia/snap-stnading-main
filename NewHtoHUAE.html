@@ -152,8 +152,8 @@
     let teamId = urlParams.get("Id")
     let leagueId = urlParams.get("League")
     // console.log(teamId)
-    console.log(teamId)
-    console.log(leagueId)
+    // console.log(teamId)
+    // console.log(leagueId)
 
     // let fixtureId = "22"
 
@@ -169,7 +169,7 @@
                 },
                     headers: {
                         "x-rapidapi-host" : "v3.football.api-sports.io",
-                        "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                        "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                     }
                 })
                 .then(response => {
@@ -204,7 +204,7 @@
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
-                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                    "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                 }
             })
             .then((response)=>{        
@@ -236,14 +236,14 @@
                 // console.log(home)
                 // console.log(one.type == "Goal")
                 changeTeamsNamesToArabic()
-                var imageData = sessionStorage.getItem('imageData');
-                document.getElementById('receivedImage').src = imageData;
             })
-    })
-
+        })
+        
+        var imageData = localStorage.getItem('imageData');
+        document.getElementById('receivedImage').src = imageData;
     // if(imageData){
     // }
-    // Retrieve the image data from sessionStorage
+    // Retrieve the image data from localStorage
 
 // Set the source of the image element to the received image data
 </script>

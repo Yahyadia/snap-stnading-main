@@ -94,15 +94,15 @@
     </div>
 </body>
 <script>
-     // Retrieve the image data from sessionStorage
-     var imageData = sessionStorage.getItem('imageData');
+     // Retrieve the image data from localStorage
+     var imageData = localStorage.getItem('imageData');
 
     // Set the source of the image element to the received image data
 
     document.getElementById('receivedImage').src = imageData;
 
-    const titleStorage = sessionStorage.getItem('title');
-    const descStorage = sessionStorage.getItem('desc');
+    const titleStorage = localStorage.getItem('title');
+    const descStorage = localStorage.getItem('desc');
 
     document.getElementById("title").innerText = titleStorage
     document.getElementById("desc").innerText = descStorage

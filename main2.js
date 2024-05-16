@@ -21,6 +21,9 @@ function btayehLogo(){
         if(team.src == "https://media.api-sports.io/football/leagues/17.png"){
             team.src = "./images/afc2.png"  
         }
+        if(team.src == "https://media.api-sports.io/football/leagues/301.png"){
+            team.src = "./images/uaelogo2.png"  
+        }
 
     }
 }
@@ -106,6 +109,8 @@ function changeVenuesNamesToArabic(){
                 venue.innerHTML = "استاد  ال مكتوم"
             }else if(venue.innerHTML == "Saqr bin Mohammad al Qassimi Stadium"){
                 venue.innerHTML = "استاد صقر بن محمد القاسمي"
+            }else if(venue.innerHTML == "Sheikh Khalifa International Stadium"){
+                venue.innerHTML = "استاد خليفة بن زايد"
             }                                 
         }
 }

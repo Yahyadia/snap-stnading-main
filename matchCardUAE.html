@@ -140,7 +140,7 @@
                 },
                     headers: {
                         "x-rapidapi-host" : "v3.football.api-sports.io",
-                        "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                        "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                     }
                 })
                 .then(response => {
@@ -190,7 +190,7 @@
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
-                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                    "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                 }
             })
             .then((response)=>{        
@@ -227,13 +227,13 @@
             })
     })
 
-    var imageData = sessionStorage.getItem('imageData');
+    var imageData = localStorage.getItem('imageData');
     if(imageData){
         document.getElementById('receivedImage').src = imageData;
     }
-    const titleStorage = sessionStorage.getItem('title');
+    const titleStorage = localStorage.getItem('title');
     document.getElementById("title").innerText = titleStorage
-    // Retrieve the image data from sessionStorage
+    // Retrieve the image data from localStorage
 
 // Set the source of the image element to the received image data
 </script>

@@ -28,7 +28,7 @@
             color:white;
             text-align: center;
             font-family: 'Noto Kufi Arabic', sans-serif;
-            background-image: linear-gradient(0deg, #06141b, #11212d, #253745);
+            background-image: linear-gradient(0deg, #11212d, #253745, #4a5c6a);
         }
         .second-container{
             display: flex;
@@ -140,7 +140,7 @@
                 },
                     headers: {
                         "x-rapidapi-host" : "v3.football.api-sports.io",
-                        "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                        "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                     }
                 })
                 .then(response => {
@@ -190,7 +190,7 @@
                 },
                 headers: {
                     "x-rapidapi-host" : "v3.football.api-sports.io",
-                    "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+                    "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
                 }
             })
             .then((response)=>{        
@@ -222,17 +222,18 @@
                 // console.log(home)
                 // console.log(one.type == "Goal")
                 changeTeamsNamesToArabic()
+                changeVenuesNamesToArabic()
                 
             })
     })
 
-    var imageData = sessionStorage.getItem('imageData');
+    var imageData = localStorage.getItem('imageData');
     if(imageData){
         document.getElementById('receivedImage').src = imageData;
     }
-    const titleStorage = sessionStorage.getItem('title');
+    const titleStorage = localStorage.getItem('title');
     document.getElementById("title").innerText = titleStorage
-    // Retrieve the image data from sessionStorage
+    // Retrieve the image data from localStorage
 
 // Set the source of the image element to the received image data
 </script>

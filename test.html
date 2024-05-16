@@ -41,31 +41,31 @@
     //         },
     //         headers: {
     //             "x-rapidapi-host" : "v3.football.api-sports.io",
-    //             "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
+    //             "x-rapidapi-key" : "2551c7683ef3d31e864182373d21fbeb"
     //         }
     // })
     // .then(response => {
     //     console.log(response)
     // })
 
-    axios.get("https://v3.football.api-sports.io/fixtures/", 
-        {
-            params: {
-                league: '560',
-                season: '2023',
-                // team: '2865',
-                // round: `Regular Season - ${round}`,
-                timezone: 'Asia/Dubai',
-                // date: "2024-02-12"
-            },
-            headers: {
-                "x-rapidapi-host" : "v3.football.api-sports.io",
-                "x-rapidapi-key" : "eb8edc470479b57c921f228f838836e7"
-            }
-    })
-    .then(response => {
-        console.log(response)
-    })
+    const axios = require('axios');
+
+const options = {
+  method: 'GET',
+  url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+  params: {date: '2021-01-29'},
+  headers: {
+    'X-RapidAPI-Key': 'e1abaaaac4msh59d13fc4e1b132ep1e0ebfjsn7b762c72dfdf',
+    'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+  }
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
 
 </script>
 </html>

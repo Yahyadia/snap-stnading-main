@@ -124,3 +124,8 @@ body{
     margin-inline: auto;
     padding: 0 16px;   
 }
+
+.date:not(:first-of-type){
+    /* margin-top: 10px; */
+
+}

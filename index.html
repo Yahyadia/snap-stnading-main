@@ -9,6 +9,10 @@
         body{
             background-color: grey;
         }
+        textarea{
+            height: 200px;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -32,7 +36,7 @@
     <button onclick="send('HtoH')">H to H الدوري</button>
     <button onclick="send('NewHtoH')">H to H 2</button>
     <button onclick="send('NewHtoHUAE')">H to H UAE</button>
-    <button onclilck="send('scorer')">scorers</button>
+    <button onclick="send('scorer')">scorers</button>
     <hr>
     <!-- sending phot to another page -->
     <input type="file" id="fileinput" accept="image/*" value="background">
@@ -43,6 +47,7 @@
     <input onclick="send('news')" id="send-news" type="button" value="send news">
     <input onclick="send('news2')" id="send-news2" type="button" value="send news2">
     <input onclick="send('news3')" id="send-news3" type="button" value="send news3">
+    <input onclick="send('news4')" id="send-news4" type="button" value="send news4">
 
 </body>
 <script>
@@ -66,21 +71,21 @@
                 reader.onload = function(e) {
                     var imageUrl = e.target.result;
 
-                    // Store the image data in sessionStorage
-                    sessionStorage.setItem('imageData', imageUrl);
+                    // Store the image data in localStorage
+                    localStorage.setItem('imageData', imageUrl);
                     
                     // Redirect to the other page
-                    window.location.href = `${url}.html`;
+                    // window.location.href = `${url}.html`;
                 };
                 reader.readAsDataURL(file);
             }
 
-            // Store title and desc in SessionStorage
+            // Store title and desc in localStorage
             let title = document.getElementById("title").value
             let desc = document.getElementById("description").value
 
-            sessionStorage.setItem('title', title);
-            sessionStorage.setItem('desc', desc);
+            localStorage.setItem('title', title);
+            localStorage.setItem('desc', desc);
 
     }
 
