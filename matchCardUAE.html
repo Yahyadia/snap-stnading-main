@@ -86,7 +86,7 @@
             <div class="league-logo">
                 <img id="league_logo" src="images/newCup-.png" alt="">
             </div>
-            <h2 class="title" id="title">النهـــــائي</h2>
+            <h2 class="title" id="title"></h2>
             <div class="second-container">
                 <!--  -->
                 <div class="teams-container">
@@ -227,10 +227,10 @@
             })
     })
 
-    var imageData = localStorage.getItem('imageData');
-    if(imageData){
-        document.getElementById('receivedImage').src = imageData;
-    }
+    // var imageData = localStorage.getItem('imageData');
+    // if(imageData){
+    //     document.getElementById('receivedImage').src = imageData;
+    // }
     const titleStorage = localStorage.getItem('title');
     document.getElementById("title").innerText = titleStorage
     // Retrieve the image data from localStorage
